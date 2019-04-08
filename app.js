@@ -1,10 +1,13 @@
+/*
+ * Easter egg (Puntos extra): ir a /droids
+ */
+
 const express = require('express');
-
 const port = process.env.PORT || 3000;
-
 const app = express();
-
 const met = require('./met.js');
+const path = require('path');
+const publicDir = path.join(__dirname, 'download.jpeg');
 
 app.listen(port, () => {
     console.log('Up and listening');
@@ -36,6 +39,10 @@ app.get('/met', (req, res) => {
             res.json(response);
         }
     });
+});
+
+app.get('/droids', (req, res) => {
+    res.sendFile(publicDir);
 });
 
 app.get('*', (req, res) => {
